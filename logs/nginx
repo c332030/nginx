@@ -1,0 +1,14 @@
+/home/program/nginx/logs/*.log
+{
+  daily
+  rotate 15
+  dateext
+  missingok
+  notifempty
+  compress
+  delaycompress
+  sharedscripts
+  postrotate
+    docker exec -it nginx nginx -s reload
+  endscript
+}

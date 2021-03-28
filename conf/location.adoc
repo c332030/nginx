@@ -1,0 +1,17 @@
+
+= nginx conf location
+
+使用 location proxy 记得加斜杠
+
+[source,text]
+----
+location /self/ {
+    proxy_pass http://self.work.c332030.com/;
+}
+----
+
+没有“/”时，可以模糊匹配字符串本身和后面所有
+例如：location /abc/def可以匹配/abc/defghi请求，也可以匹配/abc/def/ghi等
+
+而有“/”时，只能匹配后面
+例如：location /abc/def/不能匹配/abc/defghi请求，只能匹配/abc/def/anything这样的请求

@@ -1,0 +1,27 @@
+
+= nginx link
+
+[source, cmd]
+----
+
+@echo off
+
+set app=%~dp0app
+set data=%~dp0data
+
+echo %app%
+echo %data%
+
+rd /s /q %app%\html 1>nul 2>&1
+mklink /h /j %app%\html %data%\html
+
+del /f /q %app%\conf\nginx.conf 1>nul 2>&1
+mklink /h %app%\conf\nginx.conf %data%\conf\nginx.conf
+
+rd /q %app%\conf\conf 1>nul 2>&1
+mklink /h /j %app%\conf\conf %data%\conf\conf
+
+rd /q %app%\conf\cert 1>nul 2>&1
+mklink /h /j %app%\conf\cert %data%\cert
+
+----

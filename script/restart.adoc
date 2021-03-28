@@ -1,0 +1,20 @@
+
+= nginx restart
+
+[source, cmd]
+----
+taskkill /f /im nginx.exe
+
+cd %~dp0/app
+
+rmdir /s /q logs 2>nul 1>nul
+mkdir logs 2>nul 1>nul
+
+start nginx.exe
+::nginx -s reload
+
+::pause >nul
+
+cd %~dp0
+
+----

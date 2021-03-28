@@ -1,0 +1,27 @@
+
+= 日志按天分类
+
+[source,shell script]
+----
+vi /etc/logrotate.d/nginx
+
+chcon -Rv --type=var_log_t /home/program/nginx/logs
+chcon -Rv --type=var_log_t /usr/bin/docker
+----
+
+测试规则执行结果
+[source,shell script]
+----
+logrotate -vdf /etc/logrotate.conf
+
+logrotate -d /etc/logrotate.d/nginx
+----
+
+重新打开日志文件，
+[source,shell script]
+----
+docker exec -it nginx kill -USR1 `cat /home/program/nginx/logs/nginx.pid`
+
+docker exec -it nginx nginx -s reload
+
+----
