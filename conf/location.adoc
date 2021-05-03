@@ -6,7 +6,7 @@
 [source,text]
 ----
 location /self/ {
-    proxy_pass http://self.work.c332030.com/;
+    proxy_pass http://self.com/;
 }
 ----
 
